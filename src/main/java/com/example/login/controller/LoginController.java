@@ -28,4 +28,14 @@ public class LoginController {
             return Result.error("用户名或密码错误！");
         }
     }
+
+    @PostMapping("/register")
+    public Result<User> register(@RequestBody User user){
+        User newUser = userService.register(user.getUsername(),user.getPassword());
+        if (newUser != null){
+            return Result.success(newUser);
+        }else {
+            return Result.error("用户名已存在，注册失败");
+        }
+    }
 }

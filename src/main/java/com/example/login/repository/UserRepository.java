@@ -30,4 +30,24 @@ public class UserRepository {
             return null;
         }
     }
+
+    //注册用户
+    public User findByUsername (String username){
+        String sql = "select * from user where username = ?";
+        try{
+            return jdbcTemplate.queryForObject(
+                sql,
+                new BeanPropertyRowMapper<>(User.class),
+                username
+            );
+
+        }catch(Exception e){
+            return null;
+        }
+    }
+
+    public void insertUser(String username,String password){
+        String sql = "insert into user(username,password) values (?,?)";
+        jdbcTemplate.update(sql,username,password);
+    }
 }

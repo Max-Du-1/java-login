@@ -20,4 +20,15 @@ public class UserServiceImpl implements UserService {
         // 调用 repository 层的方法，完成业务逻辑
         return userRepository.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public User register(String username,String password){
+        User oldUser = userRepository.findByUsername(username);
+        if(oldUser != null){
+            return null;
+        }
+        userRepository.insertUser(username,password);
+        return userRepository.findByUsername(username);
+    }
+
 }
