@@ -1,4 +1,4 @@
-package com.example.login.pojo;
+package com.example.login.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
