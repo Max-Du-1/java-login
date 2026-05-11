@@ -7,10 +7,13 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Tag(name = "用户接口", description = "登录、注册相关接口")
+// 这一行就是规范核心！统一接口前缀
+@RequestMapping("/api/user")
 public class LoginController {
 
     private final UserService userService;
