@@ -14,7 +14,7 @@ public class Knife4jConfig {
                 .info(new Info()
                         .title("Hanputaoya")  // 文档标题
                         .version("1.0.0")          // 版本号
-                        // .description("用户登录、注册接口在线文档") // 描述
+                        .description("用户登录、注册接口在线文档") // 描述
                 );
     }
 }
