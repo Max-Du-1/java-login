@@ -12,9 +12,9 @@ public class Knife4jConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("登录注册接口文档")  // 文档标题
+                        .title("Hanputaoya")  // 文档标题
                         .version("1.0.0")          // 版本号
-                        .description("用户登录、注册接口在线文档") // 描述
+                        // .description("用户登录、注册接口在线文档") // 描述
                 );
     }
 }
