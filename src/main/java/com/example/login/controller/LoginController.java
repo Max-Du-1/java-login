@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "用户接口", description = "登录、注册相关接口")
+@Tag(name = "登录接口", description = "登录、注册相关接口")
 // 这一行就是规范核心！统一接口前缀
 @RequestMapping("/api/user")
 public class LoginController {
@@ -47,27 +47,4 @@ public class LoginController {
         }
     }
 
-    /**
-     * 分页查询用户列表：REST 惯例使用 GET；页码从 1 开始，默认每页 10 条。
-     */
-    @Operation(summary = "用户分页列表", description = "按页查询全部用户（按 id 排序）")
-    @PostMapping("/page")
-    public Result<PageResult<User>> pageUsers(@RequestBody UserQuery userQuery) {
-        // 处理分页参数，给默认值
-        Integer pageNum = userQuery.getPageNum();
-        if (pageNum == null || pageNum < 1) {
-            pageNum = 1;
-        }
-
-        Integer pageSize = userQuery.getPageSize();
-        if (pageSize == null || pageSize < 1) {
-            pageSize = 10;
-        }
-        if (pageSize > 100) { // 限制最大条数，防止恶意请求
-            pageSize = 100;
-        }
-
-        PageResult<User> pageResult = userService.pageUsers(pageNum, pageSize);
-        return Result.success(pageResult);
-    }
 }
