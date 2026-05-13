@@ -6,10 +6,7 @@ import com.example.login.entity.User;
 import com.example.login.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Tag(name = "用户管理", description = "用户查询、修改、删除")
@@ -44,4 +41,10 @@ public class UserController {
         return Result.success(pageResult);
     }
 
+    @Operation(summary = "删除用户", description = "删除用户")
+    @PostMapping("/delete")
+    public Result<String> deleteUser(@RequestParam Integer id) {
+        userService.deleteUser(id);
+        return Result.success("success");
+    }
 }

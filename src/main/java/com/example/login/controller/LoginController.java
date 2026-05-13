@@ -3,7 +3,6 @@ package com.example.login.controller;
 import com.example.login.common.PageResult;
 import com.example.login.common.Result;
 import com.example.login.entity.User;
-import com.example.login.entity.UserQuery;
 import com.example.login.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -63,4 +63,10 @@ public class UserRepository {
         String sql = "SELECT * FROM user ORDER BY id LIMIT ? OFFSET ?";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), limit, offset);
     }
+
+    //删除用户接口
+    public void deleteUser(Integer id) {
+        String sql = "DELETE FROM user WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
 }
