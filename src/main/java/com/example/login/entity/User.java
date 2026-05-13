@@ -12,4 +12,10 @@ public class User {
     private String username;
     @Schema(description = "登录密码")
     private String password;
+
+    @Schema(description = "当前页码")
+    private Integer pageNum;
+
+    @Schema(description = "每页条数")
+    private Integer pageSize;
 }

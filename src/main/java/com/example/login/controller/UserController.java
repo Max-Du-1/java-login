@@ -3,7 +3,6 @@ package com.example.login.controller;
 import com.example.login.common.PageResult;
 import com.example.login.common.Result;
 import com.example.login.entity.User;
-import com.example.login.entity.UserQuery;
 import com.example.login.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -26,14 +25,14 @@ public class UserController {
 
     @Operation(summary = "用户分页列表", description = "按页查询全部用户（按 id 排序）")
     @PostMapping("/page")
-    public Result<PageResult<User>> pageUsers(@RequestBody UserQuery userQuery) {
+    public Result<PageResult<User>> pageUsers(@RequestBody User userBianliangmingkezidingyi) {
         // 处理分页参数，给默认值
-        Integer pageNum = userQuery.getPageNum();
+        Integer pageNum = userBianliangmingkezidingyi.getPageNum();
         if (pageNum == null || pageNum < 1) {
             pageNum = 1;
         }
 
-        Integer pageSize = userQuery.getPageSize();
+        Integer pageSize = userBianliangmingkezidingyi.getPageSize();
         if (pageSize == null || pageSize < 1) {
             pageSize = 10;
         }
