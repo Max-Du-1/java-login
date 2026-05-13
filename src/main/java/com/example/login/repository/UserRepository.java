@@ -1,6 +1,7 @@
 package com.example.login.repository;
 
 import com.example.login.entity.User;
+import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -49,5 +50,17 @@ public class UserRepository {
     public void insertUser(String username,String password){
         String sql = "insert into user(username,password) values (?,?)";
         jdbcTemplate.update(sql,username,password);
+    }
+
+    /** 用户表总条数，供分页计算总页数等。 */
+    public long countAll() {
+        Long n = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM user", Long.class);
+        return n != null ? n : 0L;
+    }
+
+    /** 按主键顺序分页查询；offset = (pageNum-1)*pageSize，limit = pageSize。 */
+    public List<User> findPage(int offset, int limit) {
+        String sql = "SELECT * FROM user ORDER BY id LIMIT ? OFFSET ?";
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), limit, offset);
     }
 }
