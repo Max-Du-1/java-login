@@ -5,6 +5,7 @@ import com.example.login.entity.User;
 import com.example.login.repository.UserRepository;
 import com.example.login.service.UserService;
 import java.util.List;
+import com.example.login.util.UuidUtil;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,7 +30,10 @@ public class UserServiceImpl implements UserService {
         if(oldUser != null){
             return null;
         }
-        userRepository.insertUser(username,password);
+        // 生成32位随机ID
+        String userId = UuidUtil.get32Uuid();
+        // 传入 userId 保存到数据库
+        userRepository.insertUser(username,password,userId);
         return userRepository.findByUsername(username);
     }
 
