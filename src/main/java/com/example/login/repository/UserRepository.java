@@ -47,9 +47,9 @@ public class UserRepository {
         }
     }
 
-    public void insertUser(String username,String password){
-        String sql = "insert into user(username,password) values (?,?)";
-        jdbcTemplate.update(sql,username,password);
+    public void insertUser(String username,String password,String userId){
+        String sql = "insert into user(username,password,user_id) values (?,?,?)";
+        jdbcTemplate.update(sql,username,password,userId);
     }
 
     /** 用户表总条数，供分页计算总页数等。 */
