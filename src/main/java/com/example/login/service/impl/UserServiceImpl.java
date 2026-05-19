@@ -25,15 +25,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String username,String password){
+    public User register(String username,String password,Integer gender){
         User oldUser = userRepository.findByUsername(username);
         if(oldUser != null){
+            return null;
+        }
+
+        if (gender == null) {
+            gender = 0;
+        }
+        if (gender < 0 || gender > 2) {
             return null;
         }
         // 生成32位随机ID
         String userId = UuidUtil.get32Uuid();
         // 传入 userId 保存到数据库
-        userRepository.insertUser(username,password,userId);
+        userRepository.insertUser(username,password,userId,gender);
         return userRepository.findByUsername(username);
     }
 

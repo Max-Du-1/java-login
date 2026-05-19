@@ -17,6 +17,9 @@ public class User {
     @Schema(description = "登录密码")
     private String password;
 
+    @Schema(description = "性别：0未知 1男 2女", example = "1")
+    private Integer gender;
+
 //    @Schema(description = "当前页码")
 //    private Integer pageNum;
 //
