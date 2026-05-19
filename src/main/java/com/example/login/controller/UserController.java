@@ -1,5 +1,5 @@
 package com.example.login.controller;
-
+import io.swagger.v3.oas.annotations.Parameter;
 import com.example.login.common.PageResult;
 import com.example.login.common.Result;
 import com.example.login.entity.User;
@@ -64,6 +64,15 @@ public class UserController {
     @PostMapping("/delete")
     public Result<String> deleteUser(@RequestParam Integer id) {
         userService.deleteUser(id);
+        return Result.success("success");
+    }
+
+    @Operation(summary = "删除用户(user_id)", description = "删除用户(user_id)")
+    @PostMapping("/newdelete")
+    public Result<String> deleteByUserId(
+        @Parameter(description = "用户对外唯一标识 id", required = true)
+        @RequestParam("id") String id) {
+        userService.deleteByUserId(id);
         return Result.success("success");
     }
 }

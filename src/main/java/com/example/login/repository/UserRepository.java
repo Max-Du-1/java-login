@@ -64,9 +64,15 @@ public class UserRepository {
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class), limit, offset);
     }
 
-    //删除用户接口
+    //删除用户接口（根据id删除）
     public void deleteUser(Integer id) {
         String sql = "DELETE FROM user WHERE id = ?";
         jdbcTemplate.update(sql, id);
+    }
+
+    //根据user_id删除，
+    public void deleteByUserId(String userId) {
+        String sql = "DELETE FROM user WHERE user_id = ?";
+        jdbcTemplate.update(sql, userId);
     }
 }

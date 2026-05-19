@@ -13,4 +13,6 @@ public interface UserService {
     PageResult<User> pageUsers(int pageNum, int pageSize);
 
     void deleteUser(Integer id);
+
+    void deleteByUserId(String userId);//新删除接口，根据user_id
 }
