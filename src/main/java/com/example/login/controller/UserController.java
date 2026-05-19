@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Tag(name = "用户管理", description = "用户查询、修改、删除")
+@Tag(name = "用户管理", description = "用户管理")
 @RequestMapping("/api/user")
 
 public class UserController {
@@ -20,6 +20,24 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
+
+    @Operation(summary = "用户注册", description = "注册新用户，用户名不能重复")
+    @PostMapping("/register")
+    public Result<User> register(@RequestBody User user) {
+        User newUser = userService.register(user.getUsername(), user.getPassword());
+        if (newUser != null) {
+            return Result.success(newUser);
+        } else {
+            return Result.error("用户名已存在，注册失败");
+        }
+    }
+
+
+
+
+
+
 
     @Operation(summary = "用户分页列表", description = "按页查询全部用户（按 id 排序）")
     @PostMapping("/page")

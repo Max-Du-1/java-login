@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "登录接口", description = "登录、注册相关接口")
+@Tag(name = "登录接口", description = "登录相关接口")
 // 这一行就是规范核心！统一接口前缀
 @RequestMapping("/api/user")
 public class LoginController {
@@ -35,15 +35,6 @@ public class LoginController {
         }
     }
 
-    @Operation(summary = "用户注册", description = "注册新用户，用户名不能重复")
-    @PostMapping("/register")
-    public Result<User> register(@RequestBody User user){
-        User newUser = userService.register(user.getUsername(),user.getPassword());
-        if (newUser != null){
-            return Result.success(newUser);
-        }else {
-            return Result.error("用户名已存在，注册失败");
-        }
-    }
+
 
 }
