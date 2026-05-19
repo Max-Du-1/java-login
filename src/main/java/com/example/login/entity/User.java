@@ -12,6 +12,8 @@ public class User {
     private Integer id;
     @Schema(description = "登录用户名")
     private String username;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)  //WRITE_ONLY：只能写（接收请求），不能读（写入响应）
     @Schema(description = "登录密码")
     private String password;
 
