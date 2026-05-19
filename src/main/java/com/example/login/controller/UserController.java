@@ -62,9 +62,12 @@ public class UserController {
 
     @Operation(summary = "删除用户", description = "删除用户")
     @PostMapping("/delete")
-    public Result<String> deleteUser(@RequestParam Integer id) {
-        userService.deleteUser(id);
-        return Result.success("success");
+    public Result<String> deleteUser(
+            @RequestParam Integer id) {
+        boolean success = userService.deleteUser(id);
+        if (success) {
+            return Result.success("success");
+        } return Result.error("没有此用户");
     }
 
     @Operation(summary = "删除用户(user_id)", description = "删除用户(user_id)")

@@ -70,6 +70,20 @@ public class UserRepository {
         jdbcTemplate.update(sql, id);
     }
 
+    //根据id查询用户
+    public User findById(Integer id) {
+        String sql = "SELECT * FROM user WHERE id = ?";
+        try{
+            return jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(User.class),
+                    id
+            );
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     /** 根据 user_id 查询用户，查不到返回 null */
     public User findByUserId(String userId) {
         String sql = "SELECT * FROM user WHERE user_id = ?";

@@ -12,7 +12,7 @@ public interface UserService {
     /** 用户列表分页查询，页码从 1 开始。 */
     PageResult<User> pageUsers(int pageNum, int pageSize);
 
-    void deleteUser(Integer id);
+    boolean deleteUser(Integer id);
 
     boolean deleteByUserId(String userId);//新删除接口，根据user_id
 }
