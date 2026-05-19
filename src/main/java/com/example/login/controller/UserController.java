@@ -4,6 +4,7 @@ import com.example.login.common.PageResult;
 import com.example.login.common.Result;
 import com.example.login.entity.User;
 import com.example.login.service.UserService;
+import com.example.login.dto.UserPageQuery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class UserController {
 
     @Operation(summary = "用户分页列表", description = "按页查询全部用户（按 id 排序）")
     @PostMapping("/page")
-    public Result<PageResult<User>> pageUsers(@RequestBody User userBianliangmingkezidingyi) {
+    public Result<PageResult<User>> pageUsers(@RequestBody UserPageQuery userBianliangmingkezidingyi) {
         // 处理分页参数，给默认值
         Integer pageNum = userBianliangmingkezidingyi.getPageNum();
         if (pageNum == null || pageNum < 1) {
