@@ -70,9 +70,13 @@ public class UserController {
     @Operation(summary = "删除用户(user_id)", description = "删除用户(user_id)")
     @PostMapping("/newdelete")
     public Result<String> deleteByUserId(
-        @Parameter(description = "用户对外唯一标识 id", required = true)
-        @RequestParam("id") String id) {
-        userService.deleteByUserId(id);
-        return Result.success("success");
+            @Parameter(description = "用户对外唯一标识 id", required = true)
+            @RequestParam("id") String id) {
+        boolean success = userService.deleteByUserId(id);
+        if (success) {
+            return Result.success("success");
+        } else {
+            return Result.error("没有此用户");
+        }
     }
 }

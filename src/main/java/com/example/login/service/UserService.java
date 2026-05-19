@@ -14,5 +14,5 @@ public interface UserService {
 
     void deleteUser(Integer id);
 
-    void deleteByUserId(String userId);//新删除接口，根据user_id
+    boolean deleteByUserId(String userId);//新删除接口，根据user_id
 }
