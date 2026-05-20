@@ -7,7 +7,7 @@ public interface UserService {
     User login(String username, String password);
 
     //注册
-    User register(String username, String password, Integer gender);
+    User register(String username, String password, Integer gender, String account, String phone, String email, Integer isAdmin);
 
     /** 用户列表分页查询，页码从 1 开始。 */
     PageResult<User> pageUsers(int pageNum, int pageSize);

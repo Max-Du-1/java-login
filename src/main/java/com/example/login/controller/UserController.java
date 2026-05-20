@@ -25,7 +25,7 @@ public class UserController {
     @Operation(summary = "用户注册", description = "注册新用户，用户名不能重复")
     @PostMapping("/register")
     public Result<User> register(@RequestBody User user) {
-        User newUser = userService.register(user.getUsername(), user.getPassword(), user.getGender());
+        User newUser = userService.register(user.getUsername(), user.getPassword(), user.getGender(), user.getAccount(), user.getPhone(), user.getEmail(), user.getIsAdmin());
         if (newUser != null) {
             return Result.success(newUser);
         } else {

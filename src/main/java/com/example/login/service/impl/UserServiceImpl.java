@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(String username,String password,Integer gender){
+    public User register(String username,String password,Integer gender,String account, String phone, String email, Integer isAdmin){
         User oldUser = userRepository.findByUsername(username);
         if(oldUser != null){
             return null;
@@ -37,10 +37,16 @@ public class UserServiceImpl implements UserService {
         if (gender < 0 || gender > 2) {
             return null;
         }
+        if (isAdmin == null) {
+            isAdmin = 2;
+        }
+        if (isAdmin != 1 && isAdmin != 2) {
+            isAdmin = 2;
+        }
         // 生成32位随机ID
         String userId = UuidUtil.get32Uuid();
         // 传入 userId 保存到数据库
-        userRepository.insertUser(username,password,userId,gender);
+        userRepository.insertUser(username,password,userId,gender,account,phone,email,isAdmin);
         return userRepository.findByUsername(username);
     }
 
