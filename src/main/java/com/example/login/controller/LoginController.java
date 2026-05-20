@@ -23,7 +23,7 @@ public class LoginController {
         this.userService = userService;
     }
 
-    @Operation(summary = "用户登录", description = "用户名密码登录")
+    @Operation(summary = "用户登录username", description = "用户名密码登录")
     @PostMapping("/login")
     public Result<User> login(@RequestBody User user) {
         User loginUser = userService.login(user.getUsername(), user.getPassword());
@@ -37,4 +37,18 @@ public class LoginController {
 
 
 
+    @Operation(summary = "用户登录account", description = "账号密码登录")
+    @PostMapping("/loginnew")
+    public Result<User> loginnew(@RequestBody User user) {
+        User loginUser = userService.loginByAccount(user.getAccount(), user.getPassword());
+
+        if (loginUser != null) {
+            return Result.success(loginUser);
+        } else {
+            return Result.error("用户名或密码错误！");
+        }
+    }
+
+
 }
+

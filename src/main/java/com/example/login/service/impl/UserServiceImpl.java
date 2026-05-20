@@ -35,6 +35,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User loginByAccount(String account, String password) {
+        // 调用 repository 层的方法，完成业务逻辑
+        User user = userRepository.findByAccount(account);
+        if (user == null) {
+            return null;
+        }
+
+        if (!PasswordUtil.matches(password, user.getPassword())) {
+            return null;
+        }
+
+        return user;
+    }
+
+    @Override
     public User register(String username,String password,Integer gender,String account, String phone, String email, Integer isAdmin){
         User oldUser = userRepository.findByUsername(username);
         if(oldUser != null){

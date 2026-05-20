@@ -47,6 +47,19 @@ public class UserRepository {
         }
     }
 
+    public User findByAccount (String account){
+        String sql = "select * from user where account = ?";
+        try {
+            return  jdbcTemplate.queryForObject(
+                    sql,
+                    new BeanPropertyRowMapper<>(User.class),
+                    account
+            );
+        }catch(Exception e) {
+            return null;
+        }
+    }
+
     public void insertUser(String username,String password,String userId,Integer gender,String account,String phone,String email,Integer isAdmin){
         String sql = "insert into user(username,password,user_id, gender, account , phone, email, isAdmin) values (?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(sql,username,password,userId,gender,account,phone,email,isAdmin);
