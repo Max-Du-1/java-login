@@ -4,6 +4,7 @@ import com.example.login.common.PageResult;
 import com.example.login.entity.User;
 import com.example.login.repository.UserRepository;
 import com.example.login.service.UserService;
+import com.example.login.util.PasswordUtil;
 import java.util.List;
 import com.example.login.util.UuidUtil;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User login(String username, String password) {
         // 调用 repository 层的方法，完成业务逻辑
-        return userRepository.findByUsernameAndPassword(username, password);
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return null;
+        }
+
+        if (!PasswordUtil.matches(password, user.getPassword())) {
+            return null;
+        }
+
+        return user;
     }
 
     @Override
@@ -46,7 +56,9 @@ public class UserServiceImpl implements UserService {
         // 生成32位随机ID
         String userId = UuidUtil.get32Uuid();
         // 传入 userId 保存到数据库
-        userRepository.insertUser(username,password,userId,gender,account,phone,email,isAdmin);
+        // 明文密码 → BCrypt 哈希后再存库
+        String encodedPassword = PasswordUtil.encode(password);
+        userRepository.insertUser(username, encodedPassword, userId, gender, account, phone, email, isAdmin);
         return userRepository.findByUsername(username);
     }
 
