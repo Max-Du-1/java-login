@@ -30,7 +30,7 @@ public class User {
     @Schema(description = "邮箱")
     private String email;
 
-    @Schema(description = "是否为管理员（0否1是）", example = "1")
+    @Schema(description = "是否为管理员（2否1是）", example = "1")
     private Integer isAdmin;
 
 

@@ -1,6 +1,5 @@
 package com.example.login.controller;
 
-import com.example.login.common.PageResult;
 import com.example.login.common.Result;
 import com.example.login.entity.User;
 import com.example.login.service.UserService;
