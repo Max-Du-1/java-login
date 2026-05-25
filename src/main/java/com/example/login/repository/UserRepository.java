@@ -116,4 +116,23 @@ public class UserRepository {
         String sql = "DELETE FROM user WHERE user_id = ?";
         jdbcTemplate.update(sql, userId);
     }
+
+
+    public User findByPhone(String phone) {
+        String sql = "SELECT * FROM user WHERE phone = ?";
+        try {
+            return jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),phone);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public User findByEmail(String email) {
+        String sql = "SELECT * FROM user WHERE email = ?";
+        try{
+            return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class),email);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

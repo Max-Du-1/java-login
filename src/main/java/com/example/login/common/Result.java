@@ -41,4 +41,13 @@ public class Result<T> {
         r.setData(null);
         return r;
     }
+
+    // 4. 带错误码的失败返回
+    public static <T> Result<T> error(int code, String msg) {
+        Result<T> r = new Result<>();
+        r.setCode(code);
+        r.setMsg(msg);
+        r.setData(null);
+        return r;
+    }
 }

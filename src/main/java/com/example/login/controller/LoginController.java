@@ -27,12 +27,8 @@ public class LoginController {
     @PostMapping("/login")
     public Result<User> login(@RequestBody User user) {
         User loginUser = userService.login(user.getUsername(), user.getPassword());
+        return Result.success(loginUser);
 
-        if (loginUser != null) {
-            return Result.success(loginUser);
-        } else {
-            return Result.error("用户名或密码错误！");
-        }
     }
 
 
@@ -41,12 +37,7 @@ public class LoginController {
     @PostMapping("/loginnew")
     public Result<User> loginnew(@RequestBody User user) {
         User loginUser = userService.loginByAccount(user.getAccount(), user.getPassword());
-
-        if (loginUser != null) {
-            return Result.success(loginUser);
-        } else {
-            return Result.error("用户名或密码错误！");
-        }
+        return Result.success(loginUser);
     }
 
 
